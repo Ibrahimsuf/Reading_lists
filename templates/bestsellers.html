@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Book List</title>
+  <!-- Bootstrap CSS -->
+  <style>
+    .mr-6 {
+        margin-right: 6rem !important;
+    }
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">   
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row text-center text-white mb-5">
+        <div class="col-lg-7 mx-auto">
+            <h1 class="display-4">Product List</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- List group-->
+            <ul class="list-group shadow">
+                {% for book in book_data %}
+                <!-- list group item-->
+                <li class="list-group-item">
+                    <!-- Custom content-->
+                    <div class="media flex-column flex-lg-row p-1">
+                        <div class="media-body order-1 order-lg-1 mt-0">
+                            <h5 class="mt-0 font-weight-bold mb-2">{{book["title"]}}</h5>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <h6 class="text-muted">{{book["author"]}}</h6>
+                            </div>
+                            <p class="font-weight-light text-justify"><small>Description: {{book["description"]}}</small></p>
+                            <form action="/delete" method="post" class="d-flex justify-content-between flex-wrap d-none d-sm-none d-md-none d-lg-block">
+                                <input name="id" type="hidden" value="{{ book_data[0] }}">
+                                <button type="submit" class="btn btn-danger mb-3 mb-lg-0">Delete</button>
+                            </form>
+                        </div>
+                        <img src="{{ book["book_image"] }}" alt="Generic placeholder image" height="180" width = "auto" class="mr-6 ml-lg-5 p-1 order-2 order-lg-3" >
+                    </div> <!-- End -->
+                </li> <!-- End -->
+                {% endfor %}
+                <!-- list group item -->
+            </ul> <!-- End -->
+        </div>
+    </div>
+</div>
+</body>
+</html>
