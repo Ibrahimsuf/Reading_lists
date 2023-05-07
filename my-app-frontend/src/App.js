@@ -1,25 +1,21 @@
 import React from 'react';
 import Booklist from './Booklist';
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar';  
 
 function App() {
   const [data, setData] = React.useState(null);
   const [searchString, setSearchString] = React.useState('');
-  const handleSearch = (searchString) => {
-    setSearchString(searchString);
+  const [bookList, setBookList] = React.useState([]);
+  const handleData = (data) => {
+    setBookList(data);
   }
-  React.useEffect(() => {
-    fetch("/api")
-    .then((res) => res.json())
-    .then((data) => setData(data.bookList));
-  }, []);
+  console.log(bookList)
 
-  console.log(searchString)
   return (
     <div className="container mt-3">
-      <SearchBar search_string={searchString} methodName1={handleSearch} />
+      <SearchBar search_string={searchString} methodName1={handleData} />
       <hr/>
-      {data ? <Booklist book_list={data} /> : <p>Loading...</p>}
+      {data ? <Booklist book_list={bookList.bookList} /> : <p>Loading...</p>}
     </div>
   );
 }

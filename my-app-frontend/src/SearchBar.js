@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 function SearchBar(props) {
   const [searchString, setSearchString] = useState(props.search_string);
 
-  const handleKeyPress = (event) => {
+  const handleKeyPress = async (event) => {
     if (event.key === 'Enter') {
-      props.methodName1(searchString);
+      try {
+        const response = await axios.post('/api/search', { search_string: searchString });
+        setData(response.data);
+        console.log(response);
+        props.methodName1(response.data);
+      } 
+      catch (error) {
+        console.error(error);
+      }
     }
   }
 

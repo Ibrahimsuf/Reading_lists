@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
 const port = 3001;
+const bodyParser = require("body-parser")
+
+app.use(bodyParser.json())
+
+const url = "/api/search"
+const data = []
 
 async function fetchBooks() {
   const bookList = await googleBookSearch("Harry Potter");
@@ -13,6 +19,14 @@ app.get('/api', async (req, res) => {
   //The google books
   res.json({ bookList });
 });
+
+app.post('/api/search', async (req, res) => {
+  const search_string = req.body.search_string;
+  console.log(search_string);
+  const bookList = await googleBookSearch(search_string);
+  res.json({ bookList });
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
