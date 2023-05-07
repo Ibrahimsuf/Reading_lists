@@ -1,0 +1,18 @@
+component:
+  name: SearchBar
+  props:
+    prop1: 
+      name: search_string
+      type: string
+      default: None
+      required: true
+      description: "Book title or Author to Search For"
+  methods:
+    methodName1:
+      description: "Send Search String to Backend on Key Pressed"
+  render:
+    - element:
+        type: "div"
+        children:
+          - element:
+            form field with space to input search_string
