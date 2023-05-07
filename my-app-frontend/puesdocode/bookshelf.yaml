@@ -1,0 +1,12 @@
+name: Booklist
+type: function | class
+imports:
+  - react
+props:
+  book_list: dictionary
+render:
+  #style these into a card with the title and author on the 
+  #left and the book image on the right
+  - h2 book['title']
+  - h3 book["author"]
+  - book["image"]
